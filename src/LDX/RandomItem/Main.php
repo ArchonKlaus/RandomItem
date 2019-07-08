@@ -22,10 +22,10 @@ class Main extends PluginBase {
       $this->itemdata[$num] = array("id" => $r[0],"meta" => $r[1],"amount" => $r[2]);
       $num++;
     }
-    $this->getServer()->getScheduler()->scheduleRepeatingTask(new Gift($this),$t);
+    $this->getScheduler()->scheduleRepeatingTask(new Gift($this),$t);
   }
 
-  public function onCommand(CommandSender $issuer,Command $cmd,$label,array $args) {
+  public function onCommand(CommandSender $issuer,Command $cmd,$label,array $args) : bool {
     if((strtolower($cmd->getName()) == "gift") && isset($args[0])) {
       if($this->getServer()->getPlayer($args[0]) instanceof Player) {
         $d = $this->generateData();
